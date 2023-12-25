@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    card_view:cardElevation="10dp"
+    card_view:cardCornerRadius="10dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:background="?android:attr/selectableItemBackground">
+        <ImageView
+            android:id="@+id/dish_image"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:scaleType="fitCenter"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="16dp"/>
+        <TextView
+            android:id="@+id/dish_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="10dp"
+            android:layout_below="@id/dish_image"
+            android:text="ggg"
+            android:textSize="18sp"/>
+        <TextView
+            android:id="@+id/dish_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="eee"
+            android:layout_below="@+id/dish_name"
+            android:layout_marginBottom="10dp"/>
+        <Button
+            android:padding="0dp"
+            android:id="@+id/button_remove"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:text="@string/button_remove_text"
+            android:layout_below="@id/dish_category"
+            android:background="@drawable/button_background"
+            android:textSize="11sp"
+            style="@style/button_style"/>
+        <TextView
+            android:id="@+id/count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/button_remove"
+            android:layout_below="@id/dish_category"
+            android:text="1"
+            android:layout_marginStart="5dp"
+            android:layout_marginEnd="5dp"
+            android:textSize="18sp" />
+
+        <Button
+            android:padding="0dp"
+            android:id="@+id/button_add"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:text="@string/button_add_text"
+            android:layout_below="@id/dish_category"
+            android:layout_toEndOf="@id/count"
+            android:background="@drawable/button_background"
+            style="@style/button_style" />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
