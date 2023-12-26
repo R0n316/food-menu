@@ -2,4 +2,6 @@
     <string name="app_name">laba12</string>
     <string name="button_remove_text">-</string>
     <string name="button_add_text">+</string>
+    <string name="cart_item">cart</string>
+    <string name="search_item">search</string>
 </resources>

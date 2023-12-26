@@ -17,12 +17,10 @@ import ru.alex.laba12.R;
 import ru.alex.laba12.entity.Dish;
 import ru.alex.laba12.entity.Order;
 
-public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder> {
+public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder>{
     private final LayoutInflater layoutInflater;
     private final List<Dish> dishes;
     private List<Order> orders;
-    private int count;
-    private float price;
     public CartAdapter(Context context,List<Order> orders){
         layoutInflater = LayoutInflater.from(context);
         this.orders = orders;
@@ -54,6 +52,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     public int getItemCount() {
         return dishes.size();
     }
+
 
     public static class CartViewHolder extends RecyclerView.ViewHolder{
         private final ImageView dishImage;

@@ -5,27 +5,58 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import ru.alex.laba12.R;
 import ru.alex.laba12.entity.Dish;
 import ru.alex.laba12.service.OrderService;
 
-public class DishAdapter extends RecyclerView.Adapter<DishAdapter.DishViewHolder> {
+public class DishAdapter extends RecyclerView.Adapter<DishAdapter.DishViewHolder> implements Filterable {
     private final LayoutInflater layoutInflater;
     private final List<Dish> dishes;
     private int count;
     private OrderService.DishActionListener dishActionListener;
+    private List<Dish> dishFull;
+    private Filter dishFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Dish> filteredList = new ArrayList<>();
+            if(constraint==null || constraint.length() == 0){
+                filteredList.addAll(dishFull);
+            } else{
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (Dish dish:dishes){
+                    if(dish.getDishName().toLowerCase().contains(filterPattern)){
+                        filteredList.add(dish);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            dishes.clear();
+            dishes.addAll((List) results.values);
+            notifyDataSetChanged();
+        }
+    };
     public DishAdapter(Context context,List<Dish> dishes, OrderService.DishActionListener dishActionListener){
         layoutInflater = LayoutInflater.from(context);
         this.dishes = dishes;
         this.dishActionListener = dishActionListener;
+        dishFull = new ArrayList<>(dishes);
     }
     @NonNull
     @Override
@@ -57,6 +88,11 @@ public class DishAdapter extends RecyclerView.Adapter<DishAdapter.DishViewHolder
     @Override
     public int getItemCount() {
         return dishes.size();
+    }
+
+    @Override
+    public Filter getFilter() {
+        return dishFilter;
     }
 
     public static class DishViewHolder extends RecyclerView.ViewHolder{

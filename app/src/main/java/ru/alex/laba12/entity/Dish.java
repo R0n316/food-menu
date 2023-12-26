@@ -7,13 +7,13 @@ public class Dish implements Serializable {
     private String dishName;
     private String category;
     private int dishImage;
-    private static final HashMap<String,Float> prices = new HashMap<>();
+    private static final HashMap<String,Float> PRICES = new HashMap<>();
 
     static {
-        prices.put("Харчо",230F);
-        prices.put("Омлет с луком",154F);
-        prices.put("Салат летний",50F);
-        prices.put("Творог",100F);
+        PRICES.put("Харчо",230F);
+        PRICES.put("Омлет с луком",154F);
+        PRICES.put("Салат летний",50F);
+        PRICES.put("Творог",100F);
     }
 
     public Dish(String dishName, String category, int dishImage) {
@@ -25,7 +25,7 @@ public class Dish implements Serializable {
         return dishName;
     }
     public float getPrice() {
-        return prices.get(dishName);
+        return PRICES.get(dishName);
     }
     public void setDishName(String dishName) {
         this.dishName = dishName;
